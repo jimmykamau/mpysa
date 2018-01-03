@@ -1,8 +1,10 @@
 import os
 
-import pympesa.authorization
 
-
-BASE_URL = os.environ['BASE_URL']
+BASE_MPESA_URL = os.environ['BASE_MPESA_URL']
+BASE_RESPONSE_ENDPOINT = os.environ['BASE_RESPONSE_ENDPOINT']
+BUSINESS_SHORTCODE = os.environ['BUSINESS_SHORTCODE']
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
+INITIATOR_NAME = os.environ['INITIATOR_NAME']
+SECURITY_CREDENTIAL = os.environ['SECURITY_CREDENTIAL']

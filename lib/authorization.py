@@ -1,6 +1,8 @@
 import base64
 import requests
 
+import pympesa
+
 
 class OAuthRequest(object):
     """
@@ -8,19 +10,13 @@ class OAuthRequest(object):
     to get the OAuth token
     """
 
-    consumer_key = None
-    consumer_secret = None
-    base_url = None
-    https_url = None
-
     def __init__(
             self,
-            consumer_key,
-            consumer_secret,
-            base_url):
+            consumer_key=pympesa.CONSUMER_KEY,
+            consumer_secret=pympesa.CONSUMER_SECRET,
+            base_url=pympesa.BASE_MPESA_URL):
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
-        self.base_url = base_url
         self.https_url = base_url + \
             "oauth/v1/generate?grant_type=client_credentials"
 

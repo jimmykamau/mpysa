@@ -1,25 +1,17 @@
 import unittest
-import pympesa
+from tests.setup_tests import BaseTest
 
 
-class TestAuthorization(unittest.TestCase):
-    """docstring for TestAuthorization"""
-
-    def setUp(self):
-        self.base_url = pympesa.BASE_URL
-        self.consumer_key = pympesa.CONSUMER_KEY
-        self.consumer_secret = pympesa.CONSUMER_SECRET
-        self.oauthrequest = pympesa.authorization.OAuthRequest(
-            self.consumer_key, self.consumer_secret, self.base_url)
-        self.access_token = self.oauthrequest.get_access_token()
+class TestAuthorization(BaseTest):
+    """Test OAuthRequest"""
 
     def test_get_access_token(self):
         self.assertEqual(
             200,
-            self.access_token.status_code,
+            self.access_token_response.status_code,
             msg="Cannot get access token from endpoint")
-        self.assertTrue(
-            self.access_token.json()["access_token"],
+        self.assertGreater(
+            len(self.access_token), 0,
             msg="Access token not being returned")
 
 
