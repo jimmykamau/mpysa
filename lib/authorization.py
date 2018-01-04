@@ -25,5 +25,7 @@ class OAuthRequest(object):
             self.https_url,
             headers={
                 "Authorization": "Basic {}".format(
-                    generate_auth_string(self).decode('utf-8')),
+                    generate_auth_string(
+                        self.consumer_key, self.consumer_secret)
+                    .decode('utf-8')),
                 "Content-Type": "application/json"})

@@ -1,4 +1,6 @@
 import base64
+import json
+import requests
 
 
 def generate_auth_string(consumer_key, consumer_secret):
@@ -13,3 +15,12 @@ def get_id_type(id_string):
         return "2"
     if id_string == "Organization":
         return "4"
+
+
+def make_post_request(url, token, values):
+    return requests.post(
+        url,
+        headers={
+            "Authorization": "Bearer {}".format(token),
+            "Content-Type": "application/json"},
+        data=json.dumps(values))

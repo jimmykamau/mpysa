@@ -4,7 +4,9 @@ import mpysa
 class BaseMPesa(object):
     """Base class for most requests"""
 
-    def __init__(self):
+    def __init__(self, oauth_token, https_url):
+        self.oauth_token = oauth_token
+        self.https_url = https_url
         self.base_values = {
             "SecurityCredential": mpysa.SECURITY_CREDENTIAL,
             "PartyA": mpysa.BUSINESS_SHORTCODE,

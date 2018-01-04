@@ -3,7 +3,7 @@ import requests
 
 import mpysa
 from mpysa.base_mpesa import BaseMPesa
-from mpysa.helpers import get_id_type
+from mpysa.helpers import get_id_type, make_post_request
 
 
 class B2C(BaseMPesa):
@@ -11,9 +11,8 @@ class B2C(BaseMPesa):
 
     def __init__(
             self, oauth_token, base_url=mpysa.BASE_MPESA_URL):
-        super().__init__()
-        self.oauth_token = oauth_token
-        self.https_url = base_url + "/mpesa/b2c/v1/paymentrequest"
+        super().__init__(
+            oauth_token, base_url + "/mpesa/b2c/v1/paymentrequest")
 
     def make_payment(
             self, command_id, amount, receiver_msisdn, remarks,
@@ -23,13 +22,7 @@ class B2C(BaseMPesa):
         values = self.get_b2c_values(
             command_id, amount, receiver_msisdn, remarks,
             timeout_url, response_url, occasion)
-        return requests.post(
-            self.https_url,
-            headers={
-                "Authorization": "Bearer {}".format(
-                    self.oauth_token),
-                "Content-Type": "application/json"},
-            data=json.dumps(values))
+        return make_post_request(self.https_url, self.oauth_token, values)
 
 
 class B2B(BaseMPesa):
@@ -37,9 +30,8 @@ class B2B(BaseMPesa):
 
     def __init__(
             self, oauth_token, base_url=mpysa.BASE_MPESA_URL):
-        super().__init__()
-        self.oauth_token = oauth_token
-        self.https_url = base_url + "/mpesa/b2b/v1/paymentrequest"
+        super().__init__(
+            oauth_token, base_url + "/mpesa/b2b/v1/paymentrequest")
 
     def make_payment(
             self, command_id, receiver_id_type, amount,
@@ -50,10 +42,4 @@ class B2B(BaseMPesa):
             command_id, get_id_type(receiver_id_type), amount,
             receiver_account_number, transaction_reference,
             remarks, timeout_url, response_url)
-        return requests.post(
-            self.https_url,
-            headers={
-                "Authorization": "Bearer {}".format(
-                    self.oauth_token),
-                "Content-Type": "application/json"},
-            data=json.dumps(values))
+        return make_post_request(self.https_url, self.oauth_token, values)
