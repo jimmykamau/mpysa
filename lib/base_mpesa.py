@@ -26,3 +26,21 @@ class BaseMPesa(object):
             "Occassion": occasion
         }
         return dict(self.base_values, **b2c_extras)
+
+    def get_b2b_values(
+            self, command_id, receiver_id_type, amount,
+            receiver_account_number, transaction_reference,
+            remarks, timeout_url, response_url):
+        b2b_extras = {
+            "Initiator": mpysa.INITIATOR_NAME,
+            "CommandID": command_id,
+            "SenderIdentifierType": "4",
+            "RecieverIdentifierType": receiver_id_type,
+            "Amount": amount,
+            "PartyB": receiver_account_number,
+            "AccountReference": transaction_reference,
+            "Remarks": remarks,
+            "QueueTimeOutURL": timeout_url,
+            "ResultURL": response_url
+        }
+        return dict(self.base_values, **b2b_extras)

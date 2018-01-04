@@ -1,7 +1,7 @@
-import base64
 import requests
 
 import mpysa
+from mpysa.helpers import generate_auth_string
 
 
 class OAuthRequest(object):
@@ -20,14 +20,10 @@ class OAuthRequest(object):
         self.https_url = base_url + \
             "oauth/v1/generate?grant_type=client_credentials"
 
-    def generate_auth_string(self, arg):
-        auth_string = self.consumer_key + ":" + self.consumer_secret
-        return base64.b64encode(auth_string.encode('utf-8'))
-
     def get_access_token(self):
         return requests.get(
             self.https_url,
             headers={
                 "Authorization": "Basic {}".format(
-                    self.generate_auth_string(self).decode('utf-8')),
+                    generate_auth_string(self).decode('utf-8')),
                 "Content-Type": "application/json"})
