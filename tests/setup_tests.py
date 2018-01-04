@@ -1,5 +1,5 @@
 import unittest
-from pympesa.authorization import OAuthRequest
+from mpysa.authorization import OAuthRequest
 
 
 class BaseTest(unittest.TestCase):

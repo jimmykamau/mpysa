@@ -1,4 +1,4 @@
-import pympesa
+import mpysa
 
 
 class BaseMPesa(object):
@@ -6,17 +6,17 @@ class BaseMPesa(object):
 
     def __init__(self):
         self.base_values = {
-            "SecurityCredential": pympesa.SECURITY_CREDENTIAL,
-            "PartyA": pympesa.BUSINESS_SHORTCODE,
-            "QueueTimeOutURL": pympesa.BASE_RESPONSE_ENDPOINT,
-            "ResultURL": pympesa.BASE_RESPONSE_ENDPOINT
+            "SecurityCredential": mpysa.SECURITY_CREDENTIAL,
+            "PartyA": mpysa.BUSINESS_SHORTCODE,
+            "QueueTimeOutURL": mpysa.BASE_RESPONSE_ENDPOINT,
+            "ResultURL": mpysa.BASE_RESPONSE_ENDPOINT
         }
 
     def get_b2c_values(
             self, command_id, amount, receiver_msisdn, remarks,
             timeout_url, response_url, occasion):
         b2c_extras = {
-            "InitiatorName": pympesa.INITIATOR_NAME,
+            "InitiatorName": mpysa.INITIATOR_NAME,
             "CommandID": command_id,
             "Amount": amount,
             "PartyB": receiver_msisdn,

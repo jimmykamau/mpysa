@@ -1,7 +1,7 @@
 import base64
 import requests
 
-import pympesa
+import mpysa
 
 
 class OAuthRequest(object):
@@ -12,9 +12,9 @@ class OAuthRequest(object):
 
     def __init__(
             self,
-            consumer_key=pympesa.CONSUMER_KEY,
-            consumer_secret=pympesa.CONSUMER_SECRET,
-            base_url=pympesa.BASE_MPESA_URL):
+            consumer_key=mpysa.CONSUMER_KEY,
+            consumer_secret=mpysa.CONSUMER_SECRET,
+            base_url=mpysa.BASE_MPESA_URL):
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.https_url = base_url + \

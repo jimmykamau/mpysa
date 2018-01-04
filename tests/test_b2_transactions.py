@@ -1,5 +1,5 @@
 import unittest
-from pympesa.b2 import B2C
+from mpysa.b2 import B2C
 
 from tests.setup_tests import BaseTest
 
