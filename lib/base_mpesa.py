@@ -46,3 +46,13 @@ class BaseMPesa(object):
             "ResultURL": response_url
         }
         return dict(self.base_values, **b2b_extras)
+
+    def get_c2b_register_url_values(
+            self, confirmation_url, validation_url):
+        values = {
+            "ShortCode": mpysa.BUSINESS_SHORTCODE,
+            "ResponseType": "Completed",
+            "ConfirmationURL": confirmation_url,
+            "ValidationURL": validation_url
+        }
+        return values

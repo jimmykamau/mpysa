@@ -1,6 +1,3 @@
-import json
-import requests
-
 import mpysa
 from mpysa.base_mpesa import BaseMPesa
 from mpysa.helpers import get_id_type, make_post_request
